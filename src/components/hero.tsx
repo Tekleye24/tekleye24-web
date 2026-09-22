@@ -1,10 +1,39 @@
+import fs from "node:fs";
+import path from "node:path";
 import Link from "next/link";
 import { ChurchLogo } from "@/components/church-logo";
+import { HeroBackground } from "@/components/hero-background";
 import { siteConfig } from "@/lib/site-data";
 
+const HERO_PHOTOS_DIR = path.join(process.cwd(), "public", "hero");
+const IMAGE_EXTENSIONS = /\.(jpe?g|png|webp)$/i;
+
+function getHeroPhotos(): string[] {
+  try {
+    return fs
+      .readdirSync(HERO_PHOTOS_DIR)
+      .filter((file) => IMAGE_EXTENSIONS.test(file))
+      .sort()
+      .map((file) => `/hero/${file}`);
+  } catch {
+    return [];
+  }
+}
+
 export function Hero() {
+  const photos = getHeroPhotos();
+
   return (
     <section className="relative overflow-hidden bg-navy text-cream">
+      <div aria-hidden="true" className="absolute inset-0">
+        <HeroBackground photos={photos} />
+      </div>
+
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-b from-navy/70 via-navy/60 to-navy-dark/90"
+      />
+
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-15"
@@ -13,6 +42,7 @@ export function Hero() {
             "radial-gradient(circle at 20% 20%, var(--gold-light) 0, transparent 35%), radial-gradient(circle at 85% 75%, var(--gold) 0, transparent 40%)",
         }}
       />
+
       <div className="relative mx-auto flex max-w-6xl flex-col items-center px-5 py-24 text-center sm:px-8 sm:py-32">
         <ChurchLogo className="h-36 w-36 drop-shadow-lg sm:h-44 sm:w-44" priority />
         <h1 className="mt-8 max-w-2xl font-serif text-4xl font-semibold leading-tight sm:text-5xl">
