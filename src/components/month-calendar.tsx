@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { upcomingEvents } from "@/lib/site-data";
+import { ethiopianMonthAbbr, ethiopianMonthName, toEthiopian } from "@/lib/ethiopian-calendar";
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const MONTH_NAMES = [
@@ -45,6 +46,20 @@ export function MonthCalendar() {
     [cursor],
   );
 
+  const ethiopianRangeLabel = useMemo(() => {
+    const lastOfMonth = new Date(cursor.getFullYear(), cursor.getMonth() + 1, 0);
+    const first = toEthiopian(cursor);
+    const last = toEthiopian(lastOfMonth);
+
+    if (first.year === last.year && first.month === last.month) {
+      return `${ethiopianMonthName(first.month)} ${first.year}`;
+    }
+    if (first.year === last.year) {
+      return `${ethiopianMonthName(first.month)}–${ethiopianMonthName(last.month)} ${first.year}`;
+    }
+    return `${ethiopianMonthName(first.month)} ${first.year}–${ethiopianMonthName(last.month)} ${last.year}`;
+  }, [cursor]);
+
   const eventsByKey = useMemo(() => {
     const map = new Map<string, typeof upcomingEvents>();
     for (const event of upcomingEvents) {
@@ -74,9 +89,12 @@ export function MonthCalendar() {
         >
           ←
         </button>
-        <h3 className="font-serif text-lg font-semibold sm:text-xl">
-          {MONTH_NAMES[cursor.getMonth()]} {cursor.getFullYear()}
-        </h3>
+        <div className="text-center">
+          <h3 className="font-serif text-lg font-semibold sm:text-xl">
+            {MONTH_NAMES[cursor.getMonth()]} {cursor.getFullYear()}
+          </h3>
+          <p className="text-xs text-cream/70">{ethiopianRangeLabel} E.C.</p>
+        </div>
         <button
           type="button"
           onClick={() => setCursor((c) => new Date(c.getFullYear(), c.getMonth() + 1, 1))}
@@ -103,6 +121,7 @@ export function MonthCalendar() {
           const key = `${date.getMonth() + 1}-${date.getDate()}`;
           const feastEvents = inMonth ? eventsByKey.get(key) : undefined;
           const isToday = isSameDay(date, today);
+          const ethiopian = toEthiopian(date);
 
           return (
             <div
@@ -111,17 +130,24 @@ export function MonthCalendar() {
                 inMonth ? "bg-white" : "bg-cream/50"
               }`}
             >
-              <span
-                className={`inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold ${
-                  isToday
-                    ? "bg-navy text-cream"
-                    : inMonth
-                      ? "text-ink/80"
-                      : "text-ink/30"
-                }`}
-              >
-                {date.getDate()}
-              </span>
+              <div className="flex items-baseline gap-1.5">
+                <span
+                  className={`inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold ${
+                    isToday
+                      ? "bg-navy text-cream"
+                      : inMonth
+                        ? "text-ink/80"
+                        : "text-ink/30"
+                  }`}
+                >
+                  {date.getDate()}
+                </span>
+                <span className={`text-[10px] ${inMonth ? "text-ink/40" : "text-ink/20"}`}>
+                  {ethiopian.day === 1
+                    ? `${ethiopianMonthAbbr(ethiopian.month)} 1`
+                    : ethiopian.day}
+                </span>
+              </div>
 
               {inMonth && isSunday && (
                 <span className="rounded bg-gold/20 px-1.5 py-1 text-[11px] font-medium leading-tight text-navy-dark">
