@@ -26,6 +26,7 @@ export const navLinks = [
   { href: "/about", label: "About" },
   { href: "/events", label: "Events" },
   { href: "/give", label: "Give" },
+  { href: "/membership", label: "Become a Member" },
   { href: "/contact", label: "Contact" },
 ];
 
