@@ -17,7 +17,7 @@ export function ServiceTimes() {
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {serviceTimes.map((service) => (
             <div
-              key={service.name}
+              key={`${service.name}-${service.day}`}
               className="flex gap-4 rounded-2xl border border-gold/30 bg-white p-6 shadow-sm"
             >
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-navy/10 text-navy">

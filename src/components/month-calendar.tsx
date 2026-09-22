@@ -97,7 +97,9 @@ export function MonthCalendar() {
 
       <div className="grid grid-cols-7">
         {grid.map(({ date, inMonth }) => {
-          const isSunday = date.getDay() === 0;
+          const weekday = date.getDay();
+          const isSunday = weekday === 0;
+          const isVespersDay = weekday === 3 || weekday === 5;
           const key = `${date.getMonth() + 1}-${date.getDate()}`;
           const feastEvents = inMonth ? eventsByKey.get(key) : undefined;
           const isToday = isSameDay(date, today);
@@ -124,6 +126,12 @@ export function MonthCalendar() {
               {inMonth && isSunday && (
                 <span className="rounded bg-gold/20 px-1.5 py-1 text-[11px] font-medium leading-tight text-navy-dark">
                   Liturgy 4–10 AM
+                </span>
+              )}
+
+              {inMonth && isVespersDay && (
+                <span className="rounded bg-navy/10 px-1.5 py-1 text-[11px] font-medium leading-tight text-navy-dark">
+                  Vespers 7–9 PM
                 </span>
               )}
 

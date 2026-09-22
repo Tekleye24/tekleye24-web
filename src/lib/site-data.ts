@@ -49,9 +49,16 @@ export const serviceTimes: ServiceTime[] = [
     time: "10:00 AM – 11:30 AM",
   },
   {
-    name: "Evening Prayer",
+    name: "Vespers (Mihila) & Sermon",
     day: "Wednesday",
-    time: "6:30 PM – 8:00 PM",
+    time: "7:00 PM – 9:00 PM",
+    note: "Sermon delivered in Amharic.",
+  },
+  {
+    name: "Vespers (Mihila) & Sermon",
+    day: "Friday",
+    time: "7:00 PM – 9:00 PM",
+    note: "Sermon delivered in English.",
   },
   {
     name: "Feast Day Services",

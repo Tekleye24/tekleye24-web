@@ -14,7 +14,7 @@ export default function EventsPage() {
     <>
       <PageHeader
         title="Events Calendar"
-        subtitle="Our calendar follows the Ethiopian Orthodox Tewahedo tradition. Every Sunday, Divine Liturgy runs from 4:00 AM to 10:00 AM."
+        subtitle="Our calendar follows the Ethiopian Orthodox Tewahedo tradition. Sunday Divine Liturgy runs 4:00 AM–10:00 AM; Vespers (Mihila) & Sermon is held Wednesdays and Fridays, 7:00 PM–9:00 PM."
       />
 
       <section className="px-5 py-16 sm:px-8">
@@ -23,6 +23,9 @@ export default function EventsPage() {
           <div className="mt-4 flex flex-wrap gap-4 text-xs text-ink/60">
             <span className="flex items-center gap-1.5">
               <span className="h-3 w-3 rounded bg-gold/20" /> Sunday Divine Liturgy
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="h-3 w-3 rounded bg-navy/10" /> Vespers (Mihila) & Sermon
             </span>
             <span className="flex items-center gap-1.5">
               <span className="h-3 w-3 rounded bg-red/10" /> Feast day
@@ -39,7 +42,7 @@ export default function EventsPage() {
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {serviceTimes.map((service) => (
               <div
-                key={service.name}
+                key={`${service.name}-${service.day}`}
                 className="flex gap-4 rounded-2xl border border-gold/30 bg-white p-6"
               >
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-navy/10 text-navy">
