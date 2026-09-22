@@ -1,4 +1,4 @@
-// Address, phone, and clergy are still placeholders — replace with the parish's real details.
+// Phone, email, and clergy are still placeholders — replace with the parish's real details.
 
 export const siteConfig = {
   name: "Tekleye 24",
@@ -8,8 +8,8 @@ export const siteConfig = {
   description:
     "Mesrake Tsehay Kidus Teklehaymanot Ethiopian Orthodox Tewahedo Church, under the Washington DC and Its Surroundings Archdiocese, is a parish rooted in the ancient Tewahedo faith, welcoming all to worship, fellowship, and grow in Christ.",
   address: {
-    line1: "123 Faith Avenue",
-    line2: "Your City, ST 00000",
+    line1: "13421 Twin Lakes Dr",
+    line2: "Clifton, VA 20124",
   },
   phone: "(000) 000-0000",
   email: "info@tekleye24.org",
