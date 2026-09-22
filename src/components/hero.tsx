@@ -1,33 +1,21 @@
-import fs from "node:fs";
-import path from "node:path";
+import Image from "next/image";
 import Link from "next/link";
 import { ChurchLogo } from "@/components/church-logo";
-import { HeroBackground } from "@/components/hero-background";
+import { getHeroPhotos } from "@/lib/hero-photos";
 import { siteConfig } from "@/lib/site-data";
 
-const HERO_PHOTOS_DIR = path.join(process.cwd(), "public", "hero");
-const IMAGE_EXTENSIONS = /\.(jpe?g|png|webp)$/i;
-
-function getHeroPhotos(): string[] {
-  try {
-    return fs
-      .readdirSync(HERO_PHOTOS_DIR)
-      .filter((file) => IMAGE_EXTENSIONS.test(file))
-      .sort()
-      .map((file) => `/hero/${file}`);
-  } catch {
-    return [];
-  }
-}
+const FEATURED_PHOTO = "/hero/IMG_0600.jpg";
 
 export function Hero() {
-  const photos = getHeroPhotos();
+  const photo = getHeroPhotos().includes(FEATURED_PHOTO) ? FEATURED_PHOTO : null;
 
   return (
     <section className="relative overflow-hidden bg-navy text-cream">
-      <div aria-hidden="true" className="absolute inset-0">
-        <HeroBackground photos={photos} />
-      </div>
+      {photo && (
+        <div aria-hidden="true" className="absolute inset-0">
+          <Image src={photo} alt="" fill priority sizes="100vw" className="object-cover" />
+        </div>
+      )}
 
       <div
         aria-hidden="true"

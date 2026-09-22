@@ -1,10 +1,19 @@
 import Link from "next/link";
+import { ImageCarousel } from "@/components/image-carousel";
+import { getHeroPhotos } from "@/lib/hero-photos";
+
+const FEATURED_PHOTO = "/hero/IMG_0600.jpg";
 
 export function AboutPreview() {
+  const carouselPhotos = getHeroPhotos().filter((photo) => photo !== FEATURED_PHOTO);
+
   return (
     <section className="bg-white px-5 py-20 sm:px-8">
       <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:items-center">
-        <div className="order-2 aspect-[4/3] w-full rounded-3xl bg-gradient-to-br from-navy/10 via-gold/10 to-navy/5 md:order-1" />
+        <ImageCarousel
+          photos={carouselPhotos}
+          className="order-2 aspect-[4/3] w-full rounded-3xl bg-gradient-to-br from-navy/10 via-gold/10 to-navy/5 md:order-1"
+        />
         <div className="order-1 md:order-2">
           <h2 className="font-serif text-3xl font-semibold text-navy-dark">
             Rooted in the Tewahedo Faith
