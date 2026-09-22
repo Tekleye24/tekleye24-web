@@ -14,7 +14,7 @@ export default function EventsPage() {
     <>
       <PageHeader
         title="Events Calendar"
-        subtitle="Our calendar follows the Ethiopian Orthodox Tewahedo tradition. Sunday Divine Liturgy runs 4:00 AM–10:00 AM; Vespers (Mihila) & Sermon is held Wednesdays and Fridays, 7:00 PM–9:00 PM."
+        subtitle="Our calendar follows the Ethiopian Orthodox Tewahedo tradition. Sunday Divine Liturgy runs 4:00 AM–10:00 AM; Kidan is held Monday–Saturday mornings, 7:00 AM–8:00 AM; Vespers (Mihila) & Sermon is held Wednesdays and Fridays, 7:00 PM–9:00 PM."
       />
 
       <section className="px-5 py-16 sm:px-8">
@@ -23,6 +23,9 @@ export default function EventsPage() {
           <div className="mt-4 flex flex-wrap gap-4 text-xs text-ink/60">
             <span className="flex items-center gap-1.5">
               <span className="h-3 w-3 rounded bg-gold/20" /> Sunday Divine Liturgy
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="h-3 w-3 rounded bg-ink/10" /> Kidan
             </span>
             <span className="flex items-center gap-1.5">
               <span className="h-3 w-3 rounded bg-navy/10" /> Vespers (Mihila) & Sermon

@@ -118,6 +118,7 @@ export function MonthCalendar() {
           const weekday = date.getDay();
           const isSunday = weekday === 0;
           const isVespersDay = weekday === 3 || weekday === 5;
+          const isKidanDay = weekday >= 1 && weekday <= 6;
           const key = `${date.getMonth() + 1}-${date.getDate()}`;
           const feastEvents = inMonth ? eventsByKey.get(key) : undefined;
           const isToday = isSameDay(date, today);
@@ -148,6 +149,12 @@ export function MonthCalendar() {
                     : ethiopian.day}
                 </span>
               </div>
+
+              {inMonth && isKidanDay && (
+                <span className="rounded bg-ink/10 px-1.5 py-1 text-[11px] font-medium leading-tight text-ink/70">
+                  Kidan 7–8 AM
+                </span>
+              )}
 
               {inMonth && isSunday && (
                 <span className="rounded bg-gold/20 px-1.5 py-1 text-[11px] font-medium leading-tight text-navy-dark">

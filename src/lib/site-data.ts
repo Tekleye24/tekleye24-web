@@ -13,6 +13,7 @@ export const siteConfig = {
   },
   phone: "(000) 000-0000",
   email: "info@tekleye24.org",
+  zellePhone: "(571) 397-9729",
   social: {
     facebook: "https://facebook.com",
     youtube: "https://youtube.com",
@@ -47,6 +48,12 @@ export const serviceTimes: ServiceTime[] = [
     name: "Sunday School",
     day: "Sunday",
     time: "10:00 AM – 11:30 AM",
+  },
+  {
+    name: "Kidan",
+    day: "Monday – Saturday",
+    time: "7:00 AM – 8:00 AM",
+    note: "Virginia (Eastern) time.",
   },
   {
     name: "Vespers (Mihila) & Sermon",
@@ -133,9 +140,5 @@ export const givingOptions = [
   {
     title: "Bank Transfer",
     description: "Contact the church office for account details to give by direct deposit.",
-  },
-  {
-    title: "Mobile / Online",
-    description: "Ask about mobile giving options available through the parish office.",
   },
 ];
