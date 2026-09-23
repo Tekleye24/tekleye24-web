@@ -87,6 +87,14 @@ export type ChurchEvent = {
 
 export const upcomingEvents: ChurchEvent[] = [
   {
+    title: "Mahilete Tsige",
+    date: "October 10",
+    month: 10,
+    day: 10,
+    description:
+      "An overnight hymn vigil honoring the Virgin Mary, marked with roses. Saturday 10:00 PM – Sunday 3:00 AM.",
+  },
+  {
     title: "Meskel (Finding of the True Cross)",
     date: "September 27",
     month: 9,
